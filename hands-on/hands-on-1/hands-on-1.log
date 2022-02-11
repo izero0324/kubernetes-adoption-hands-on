@@ -1,0 +1,25 @@
+minikube start
+minikube version
+kubectl get all
+kubectl create namespace esb22220
+kubectl get ns
+kubectl config set-context --current --namespace=esb22220
+kubectl get all
+kubectl config view --minify | findstr namespace:
+kubectl run nginx --image=nginx:latest
+kubectl get pod
+kubectl get pod -o wide
+kubectl describe pod nginx
+curl 127.0.0.1:80
+kubectl exec -it nginx bash
+curl 127.0.0.1:80
+kubectl get container
+kubectl get containers
+kubectl logs -f nginx
+kubectl label pod nginx key=nginx
+kubectl edit pod nginx
+kubectl get pod --show-labels
+kubectl label pod nginx key-
+kubectl get pod --show-labels
+kubectl delete pod nginx
+doskey /history > hands-on-1.log
