@@ -1,0 +1,16 @@
+kubectl get all
+kubectl apply -f pod.yaml
+kubectl get pods
+kubectl get pod hands-on-2 -o yaml > hands-on-2.yaml
+kubectl apply -f svc.yaml
+kubectl get all
+kubectl port-forward svc/nginx-svc 12345:80
+kubectl port-forward svc/nginx-svc 80:12345
+kubectl apply -f svc.yaml
+kubectl get all
+kubectl port-forward svc/nginx-svc 12345:12345
+kubectl apply -f svc.yaml
+kubectl port-forward svc/nginx-svc 80:12345
+kubectl delete svc nginx-svc
+kubectl delete pod hands-on-2
+doskey /history > hands-on-2.log

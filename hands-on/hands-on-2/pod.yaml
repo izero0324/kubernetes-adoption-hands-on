@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-1
+  name: hands-on-2
   labels:
     version: "1"
     app: nginx
@@ -14,11 +14,9 @@ spec:
           name: share-volume
     - name: busybox
       image: busybox:latest
-      # container 內需要有個 process 持續執行才能存活
-      # 因為是作為 demo shared volume 之用
       command:
         - watch
-        - echo 'Version 1' > /tmp/index.html
+        - echo 'Hands on 2 demo' > /tmp/index.html
       volumeMounts:
         - mountPath: /tmp
           name: share-volume

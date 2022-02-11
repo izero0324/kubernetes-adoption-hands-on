@@ -1,0 +1,132 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"nginx","version":"1"},"name":"hands-on-2","namespace":"esb22220"},"spec":{"containers":[{"image":"nginx:latest","name":"nginx","volumeMounts":[{"mountPath":"/usr/share/nginx/html","name":"share-volume"}]},{"command":["watch","echo 'Hands on 2 demo' \u003e /tmp/index.html"],"image":"busybox:latest","name":"busybox","volumeMounts":[{"mountPath":"/tmp","name":"share-volume"}]}],"volumes":[{"emptyDir":{},"name":"share-volume"}]}}
+  creationTimestamp: "2022-02-11T03:17:33Z"
+  labels:
+    app: nginx
+    version: "1"
+  name: hands-on-2
+  namespace: esb22220
+  resourceVersion: "4336"
+  uid: 468eb2b0-6025-425c-b45f-279b74fd2727
+spec:
+  containers:
+  - image: nginx:latest
+    imagePullPolicy: Always
+    name: nginx
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html
+      name: share-volume
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-b7fbd
+      readOnly: true
+  - command:
+    - watch
+    - echo 'Hands on 2 demo' > /tmp/index.html
+    image: busybox:latest
+    imagePullPolicy: Always
+    name: busybox
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /tmp
+      name: share-volume
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-b7fbd
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - emptyDir: {}
+    name: share-volume
+  - name: kube-api-access-b7fbd
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2022-02-11T03:17:33Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2022-02-11T03:17:42Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2022-02-11T03:17:42Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2022-02-11T03:17:33Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://34ad8c276171a202607fac88d0d53880245a19196a04d69994e5b3b96295d1ac
+    image: busybox:latest
+    imageID: docker-pullable://busybox@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb
+    lastState: {}
+    name: busybox
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2022-02-11T03:17:42Z"
+  - containerID: docker://9b12c54e2e77706a2ad0dee7c3bd3319da022b328fe9e83023c4bc9ed9087bdc
+    image: nginx:latest
+    imageID: docker-pullable://nginx@sha256:2834dc507516af02784808c5f48b7cbe38b8ed5d0f4837f16e78d00deb7e7767
+    lastState: {}
+    name: nginx
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2022-02-11T03:17:38Z"
+  hostIP: 192.168.49.2
+  phase: Running
+  podIP: 172.17.0.3
+  podIPs:
+  - ip: 172.17.0.3
+  qosClass: BestEffort
+  startTime: "2022-02-11T03:17:33Z"
