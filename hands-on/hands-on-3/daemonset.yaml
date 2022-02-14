@@ -23,4 +23,6 @@ spec:
           imagePullPolicy: Always
           name: nginx
       terminationGracePeriodSeconds: 10 # small value just for demonstration
+      nodeSelector:
+        network: 10g
       

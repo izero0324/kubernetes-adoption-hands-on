@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment-1
+  name: hands-on-3-deployment
   labels:
     app: nginx
 spec:
@@ -19,3 +19,19 @@ spec:
         - image: nginx:latest
           imagePullPolicy: Always
           name: nginx
+          resources:
+            requests:
+              cpu: 50m
+              memory: "50Mi"
+            limits:
+              cpu: 100m
+              memory: "100Mi"          
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /
+            failureThreshold: 3
+            periodSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: 80
