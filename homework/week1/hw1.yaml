@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx
+  name: nginx
+  namespace: esb22220
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    env: 
+    - name: DUMMY_DATABASE_PASSWORD
+      value: "admin"
+    resources:
+      requests:
+        cpu: 50m
+        memory: "50Mi"
+      limits:
+        cpu: 100m
+        memory: "100Mi"
+    command: ["/bin/sh"]
+    arg: ["-c", "while true; do echo $(DUMMY_DATABASE_PASSWORD) > /html/index.html; sleep 10; done"]
+    volumeMounts:
+    - mountPath: /html
+      name: share-volume
+  - image: nginx
+    name: nginx
+    env:
+    - name: DUMMY_DATABASE_PASSWORD
+      value: "admin"
+    resources:
+      requests:
+        cpu: 50m
+        memory: "50Mi"
+      limits:
+        cpu: 100m
+        memory: "100Mi"
+    startupProbe:
+      httpGet:
+        path: /
+        port: 80
+        initialDelaySeconds: 3
+        periodSeconds: 3
+        timeoutSeconds: 1
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 80
+        initialDelaySeconds: 3
+        periodSeconds: 3
+        timeoutSeconds: 1
+    readinessProbe:
+      tcpSocket:
+        port: 80
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html
+      name: share-volume
+  volumes:
+    - name: share-volume
+      emptyDir: {}
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-02-08T02:10:25Z"
+  labels:
+    run: nginx
+  name: nginx-svc
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx
+  type: ClusterIP
