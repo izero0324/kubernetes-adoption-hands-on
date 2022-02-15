@@ -69,6 +69,7 @@ $ minikube service wordpress-svc -n esb22220
 
 - 彈出wordpress初始設定視窗!:+1: 
 
+
 6. 登陸`nginx`及`fluentd`之`configmap`
 ```bash=
 $ kubectl apply -f nginx_config.yaml
