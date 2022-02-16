@@ -5,7 +5,7 @@ Docker Desktop 4.4.4 (73704)
 minikube version: v1.25.1
 ## :pencil: 實作一
 
-詳見[家鋐 Homework week 2 實作結果](/-13A7lwITeGZwtfT_wMgeg)
+詳見[家鋐 Homework week 2 實作結果](https://github.com/izero0324/kubernetes-adoption-hands-on/blob/esun/homework/week2/%E5%AE%B6%E9%8B%90%20Homework%20week%202%20%E5%AF%A6%E4%BD%9C%E7%B5%90%E6%9E%9C.md)
  
 ## :pencil: 實作二
 :dart: 以Helm Charts實現以上架構
