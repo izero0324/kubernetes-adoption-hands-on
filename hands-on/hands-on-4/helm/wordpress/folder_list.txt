@@ -1,0 +1,18 @@
+Folder PATH listing for volume Windows
+Volume serial number is 0878-C9A9
+C:.
+│   .helmignore
+│   Chart.yaml
+│   folder_list.txt
+│   values.yaml
+│   
+├───config
+│       fluentd.conf
+│       nginx-default.conf
+│       
+└───templates
+        fluentd.yaml
+        mysql.yaml
+        nginx.yaml
+        wordpress.yaml
+        
