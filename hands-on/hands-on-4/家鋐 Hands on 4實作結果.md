@@ -12,7 +12,7 @@ minikube version: v1.25.1
 
 #### 建立一新的chart
 ```bash=
-$ >helm create hw
+$ helm create hw
 Creating hw
 ```
 
