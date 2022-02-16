@@ -69,6 +69,7 @@ $ minikube service wordpress-svc -n esb22220
 
 - 彈出wordpress初始設定視窗!:+1: 
 
+
 6. 登陸`nginx`及`fluentd`之`configmap`
 ```bash=
 $ kubectl apply -f nginx_config.yaml
@@ -78,7 +79,8 @@ configmap/fluentd-cfgmap created
 
 7. 透過==Deployment==建立`nginx`及`fluentd`，並建立`nginx-svc`
 ```bash=
-$ kubectl apply -f nginx.yaml                                                                                                                 deployment.apps/nginx created
+$ kubectl apply -f nginx.yaml                                                                                                                 
+deployment.apps/nginx created
 service/nginx-svc created
 ```
 8. 檢查部屬狀態
