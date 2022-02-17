@@ -1,5 +1,12 @@
 # Kubernetes 容器編排平台
 
+## 實作內容
+* hands on 1 ~ 4
+* homework week1 and week2
+
+## 測試方式
+開啟該實作作業資料夾，操作方法均寫於"實作結果.md"檔案內
+
 ## 資料夾說明
 
 ```bash
